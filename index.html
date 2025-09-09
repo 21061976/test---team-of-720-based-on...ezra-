@@ -29,12 +29,12 @@
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
-            height: 350px;
-            max-height: 400px;
+            height: 300px;
+            max-height: 350px;
         }
         @media (min-width: 768px) {
             .chart-container {
-                height: 400px;
+                height: 320px;
             }
         }
         .flow-arrow::after {
@@ -80,19 +80,20 @@
 
             <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                 <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">2. סיכון פרטיות ואתיקה</h2>
-                <p class="text-gray-600 mb-6 flex-grow">השימוש בבינה מלאכותית וניהול מידע רגיש על תלמידים דורש התייחסות משפטית וטכנולוגית מעמיקה כדי לשמור על אמון הציבור.</p>
+                <p class="text-gray-600 mb-6">השימוש בבינה מלאכותית וניהול מידע רגיש על תלמידים דורש התייחסות משפטית וטכנולוגית מעמיקה כדי לשמור על אמון הציבור.</p>
                  <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: מורכבות האחריות הדיגיטלית</h3>
                 <div class="chart-container">
                     <canvas id="privacyChart"></canvas>
                 </div>
-                 <p class="text-gray-600 mt-6 text-center">יש להבטיח עמידה מלאה בחוק הגנת הפרטיות, להטמיע "חגורות בטיחות" טכנולוגיות שיגנו על קטינים, ולוודא שמידע אישי לא ישמש לאימון מודלי AI חיצוניים.</p>
+                <div id="privacy-legend" class="mt-4 px-2"></div>
+                 <p class="text-gray-600 mt-auto pt-4 text-center">יש להבטיח עמידה מלאה בחוק הגנת הפרטיות, להטמיע "חגורות בטיחות" טכנולוגיות שיגנו על קטינים, ולוודא שמידע אישי לא ישמש לאימון מודלי AI חיצוניים.</p>
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
                 <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">3. סיכון רגולטורי</h2>
                 <p class="text-gray-600 mb-6 flex-grow">הצלחת הפרויקט תלויה ביכולת לאפשר גמישות רגולטורית מבוקרת, שתתמוך במודלים ותכנים חדשניים.</p>
                 <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: גישור על הפער הרגולטורי</h3>
-                <div class="chart-container">
+                <div class="chart-container" style="height: 400px; max-height:450px;">
                     <canvas id="regulatoryChart"></canvas>
                 </div>
                 <p class="text-gray-600 mt-6 text-center">נדרש פתרון לאישור תכנים דינמיים המיוצרים על ידי AI, יצירת "ארגז חול רגולטורי" לניסויים, והתמודדות עם מגבלות על תשתיות טכנולוגיות.</p>
@@ -102,7 +103,7 @@
                 <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">4. סיכון מדידה והערכה</h2>
                 <p class="text-gray-600 mb-6 flex-grow">כדי להצדיק את המשאבים ולהבטיח תמיכה ארוכת טווח, הפרויקט חייב להוכיח את ערכו במדדים ברורים שמשקפים הצלחה הוליסטית.</p>
                 <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: הגדרה חדשה של הצלחה</h3>
-                <div class="chart-container">
+                <div class="chart-container" style="height: 400px; max-height:450px;">
                     <canvas id="evaluationChart"></canvas>
                 </div>
                 <p class="text-gray-600 mt-6 text-center">המעבר ממדידת ציונים בלבד למדידת מדדים רוחביים כמו מסוגלות, מוטיבציה ותחושת רלוונטיות דורש פיתוח כלי הערכה חדשים ודשבורדים שקופים.</p>
@@ -150,19 +151,32 @@
             }
         };
 
+        const generateCustomLegend = (chart, legendContainerId) => {
+            const legendContainer = document.getElementById(legendContainerId);
+            legendContainer.innerHTML = '';
+            const legendItems = chart.options.plugins.legend.labels.generateLabels(chart);
+            const ul = document.createElement('ul');
+            legendItems.forEach(item => {
+                const li = document.createElement('li');
+                li.classList.add('flex', 'items-center', 'mb-2');
+                const boxSpan = document.createElement('span');
+                boxSpan.classList.add('w-4', 'h-4', 'inline-block', 'ml-2', 'rounded-sm');
+                boxSpan.style.backgroundColor = item.fillStyle;
+                const textContainer = document.createElement('span');
+                textContainer.classList.add('text-sm');
+                textContainer.innerText = item.text;
+                
+                li.appendChild(boxSpan);
+                li.appendChild(textContainer);
+                ul.appendChild(li);
+            });
+            legendContainer.appendChild(ul);
+        };
+
         const defaultChartOptions = {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            family: 'Assistant, sans-serif',
-                            size: 14,
-                        }
-                    }
-                },
                 tooltip: {
                     callbacks: {
                         title: tooltipTitleCallback
@@ -181,7 +195,7 @@
         const privacyChart = new Chart(privacyCtx, {
             type: 'doughnut',
             data: {
-                labels: processLabels(['עמידה בחוק הגנת הפרטיות', 'בטיחות AI לקטינים', 'רגולציה על שימוש AI', 'אימון מודלים חיצוניים']),
+                labels: ['עמידה בחוק הגנת הפרטיות', 'בטיחות AI לקטינים', 'רגולציה על שימוש AI', 'אימון מודלים חיצוניים'],
                 datasets: [{
                     label: 'היבטי סיכון',
                     data: [30, 25, 25, 20],
@@ -196,24 +210,33 @@
                 cutout: '50%',
                 plugins: {
                     legend: {
-                        display: true,
-                        position: 'bottom',
+                        display: false,
                         labels: {
-                            font: {
-                                family: 'Assistant, sans-serif',
-                                size: 14,
+                           generateLabels: (chart) => {
+                                const data = chart.data;
+                                if (data.labels.length && data.datasets.length) {
+                                    return data.labels.map((label, i) => {
+                                        const meta = chart.getDatasetMeta(0);
+                                        const style = meta.controller.getStyle(i);
+                                        return {
+                                            text: label,
+                                            fillStyle: style.backgroundColor,
+                                            strokeStyle: style.borderColor,
+                                            lineWidth: style.borderWidth,
+                                            hidden: !chart.isDatasetVisible(0),
+                                            index: i
+                                        };
+                                    });
+                                }
+                                return [];
                             }
                         }
                     },
                     tooltip: {
                         callbacks: {
-                            title: tooltipTitleCallback,
+                            title: (tooltipItems) => tooltipItems[0].label,
                             label: function(context) {
-                                let label = context.label || '';
-                                if (Array.isArray(label)) { label = label.join(' '); }
-                                if (label) { label += ': '; }
-                                if (context.parsed !== null) { label += context.parsed + '%'; }
-                                return label;
+                                return ` ${context.parsed}%`;
                             }
                         }
                     },
@@ -232,6 +255,7 @@
                 }
             }
         });
+        generateCustomLegend(privacyChart, 'privacy-legend');
 
         const regulatoryCtx = document.getElementById('regulatoryChart').getContext('2d');
         const regulatoryChart = new Chart(regulatoryCtx, {
@@ -257,6 +281,13 @@
             },
             options: {
                 ...defaultChartOptions,
+                plugins: {
+                    ...defaultChartOptions.plugins,
+                     legend: {
+                        position: 'bottom',
+                        labels: { font: { family: 'Assistant, sans-serif', size: 14 } }
+                    },
+                },
                 indexAxis: 'y',
                 scales: {
                     x: {
@@ -295,6 +326,13 @@
             },
             options: {
                 ...defaultChartOptions,
+                 plugins: {
+                    ...defaultChartOptions.plugins,
+                     legend: {
+                        position: 'top',
+                         labels: { font: { family: 'Assistant, sans-serif', size: 14 } }
+                    },
+                },
                 scales: {
                     r: {
                         angleLines: {
@@ -309,12 +347,6 @@
                             }
                         }
                     }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: defaultChartOptions.plugins.tooltip
                 }
             }
         });
@@ -322,5 +354,4 @@
     </script>
 </body>
 </html>
-
 
