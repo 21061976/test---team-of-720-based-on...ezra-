@@ -196,7 +196,14 @@
                 cutout: '50%',
                 plugins: {
                     legend: {
-                        display: false
+                        display: true,
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                family: 'Assistant, sans-serif',
+                                size: 14,
+                            }
+                        }
                     },
                     tooltip: {
                         callbacks: {
@@ -212,17 +219,13 @@
                     },
                     datalabels: {
                         formatter: (value, context) => {
-                            let label = context.chart.data.labels[context.dataIndex];
-                            if (Array.isArray(label)) {
-                                label = label.join('\\n');
-                            }
-                            return `${label}\\n${value}%`;
+                            return `${value}%`;
                         },
                         color: '#fff',
                         textAlign: 'center',
                         font: {
                             weight: 'bold',
-                            size: 11,
+                            size: 16,
                             family: 'Assistant, sans-serif'
                         }
                     }
@@ -319,4 +322,5 @@
     </script>
 </body>
 </html>
+
 
