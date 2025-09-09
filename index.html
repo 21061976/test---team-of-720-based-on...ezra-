@@ -43,6 +43,22 @@
             color: #0a9396;
             line-height: 1;
         }
+        .regulatory-box {
+            background-color: #f0f9ff; /* sky-50 */
+            border-top: 2px solid #7dd3fc; /* sky-300 */
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+        }
+        .regulatory-box dt {
+            font-weight: 700;
+            color: #0c4a6e; /* sky-800 */
+        }
+        .regulatory-box dd {
+            font-size: 0.875rem; /* text-sm */
+            color: #075985; /* sky-700 */
+            padding-right: 1rem;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-gray-800">
@@ -76,10 +92,20 @@
                     </div>
                 </div>
                  <div class="mt-auto pt-4">
-                    <div class="p-3 bg-sky-100 border-t-2 border-sky-300 rounded-lg">
-                        <h4 class="font-bold text-sky-800">שינוי רגולטורי נדרש:</h4>
-                        <p class="text-sm text-sky-700">עדכון הסכמי שכר ("עוז לתמורה"/"אופק חדש") להגדרת תפקיד המורה כמנטור, תוך מתן גמול על הכשרה מקצועית במהלך יום הלימודים.</p>
-                    </div>
+                    <dl class="regulatory-box space-y-2">
+                        <div>
+                            <dt>הצורך:</dt>
+                            <dd>הכשרת מורים לתפקיד מנטור במהלך יום הלימודים.</dd>
+                        </div>
+                        <div>
+                            <dt>רגולציה קיימת:</dt>
+                            <dd>הסכמי השכר מגדירים שעות שהייה למטרות ספציפיות, והכשרה היא לרוב מחוץ לשעות התקן.</dd>
+                        </div>
+                        <div>
+                            <dt>תנאים לניסוי:</dt>
+                            <dd>הקצאת עד 2 ש"ש משעות השהייה לטובת הכשרת עמיתים מובנית, באישור הפיקוח.</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
 
@@ -92,10 +118,20 @@
                 </div>
                 <div id="privacy-legend" class="mt-4 px-2"></div>
                  <div class="mt-auto pt-4">
-                    <div class="p-3 bg-sky-100 border-t-2 border-sky-300 rounded-lg">
-                        <h4 class="font-bold text-sky-800">שינוי רגולטורי נדרש:</h4>
-                        <p class="text-sm text-sky-700">יצירת חוזר מנכ"ל ייעודי שיסדיר שימוש ב-AI עם קטינים ויגדיר כללי "נמל מבטחים" (Safe Harbor) לאבטחת מידע.</p>
-                    </div>
+                    <dl class="regulatory-box space-y-2">
+                        <div>
+                            <dt>הצורך:</dt>
+                            <dd>שימוש מזוהה של תלמידים בכלי AI ללמידה מותאמת אישית.</dd>
+                        </div>
+                        <div>
+                            <dt>רגולציה קיימת:</dt>
+                            <dd>חוזרי מנכ"ל מגבילים שימוש עצמאי בכלי AI ומחייבים פיקוח מורה.</dd>
+                        </div>
+                        <div>
+                            <dt>תנאים לניסוי:</dt>
+                            <dd>שימוש בכלי AI מאושר בלבד ("Whitelist"), שלא מאמן מודלים על מידע אישי, ובכפוף לאפשרות Opt-out להורים.</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
 
@@ -107,10 +143,20 @@
                     <canvas id="regulatoryChart"></canvas>
                 </div>
                 <div class="mt-auto pt-4">
-                    <div class="p-3 bg-sky-100 border-t-2 border-sky-300 rounded-lg">
-                        <h4 class="font-bold text-sky-800">שינוי רגולטורי נדרש:</h4>
-                        <p class="text-sm text-sky-700">ייסוד "ארגז חול רגולטורי" שיאפשר מסלול אישור מהיר לתכנים דינמיים, תוך חריגה מנוהל אישור ספרי לימוד.</p>
-                    </div>
+                    <dl class="regulatory-box space-y-2">
+                        <div>
+                            <dt>הצורך:</dt>
+                            <dd>שימוש בחומרי לימוד דינמיים שנוצרו על ידי AI.</dd>
+                        </div>
+                        <div>
+                            <dt>רגולציה קיימת:</dt>
+                            <dd>נוהל אישור ספרי לימוד דורש בדיקה אנושית מראש של כל חומר לימוד.</dd>
+                        </div>
+                        <div>
+                            <dt>תנאים לניסוי:</dt>
+                            <dd>אישור "ספק תוכן מהימן" במקום כל פריט בודד, ובלבד שכל תוכן יאושר ע"י מורה לפני הצגתו לתלמיד.</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
 
@@ -122,27 +168,26 @@
                     <canvas id="evaluationChart"></canvas>
                 </div>
                  <div class="mt-auto pt-4">
-                    <div class="p-3 bg-sky-100 border-t-2 border-sky-300 rounded-lg">
-                        <h4 class="font-bold text-sky-800">שינוי רגולטורי נדרש:</h4>
-                        <p class="text-sm text-sky-700">עיגון בחוזר מנכ"ל למתן תוקף ומשקל להערכות חלופיות ומבוססות כישורים, לצד הגמשת תוכנית הליבה.</p>
-                    </div>
+                    <dl class="regulatory-box space-y-2">
+                        <div>
+                            <dt>הצורך:</dt>
+                            <dd>מתן משקל להערכות חלופיות (פרויקטים, תיקי עבודות) בציון הסופי.</dd>
+                        </div>
+                        <div>
+                            <dt>רגולציה קיימת:</dt>
+                            <dd>תעודות סיום מבוססות בעיקר על ציוני מבחנים סטנדרטיים.</dd>
+                        </div>
+                        <div>
+                            <dt>תנאים לניסוי:</dt>
+                            <dd>הגדרת מקצועות שבהם עד 30% מהציון יתבסס על הערכה חלופית מבוססת מחוון, באישור המזכירות הפדגוגית.</dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
             
         </div>
         
-        <section class="text-center max-w-4xl mx-auto my-16">
-            <h2 class="text-3xl font-bold text-[#005f73] mb-4">תנאים להצלחת הניסוי והשינוי הרגולטורי</h2>
-            <p class="text-lg leading-relaxed text-gray-700 mb-6">כדי להצדיק את השינויים הרגולטוריים הנדרשים, על הניסוי לעמוד במספר תנאי סף ולהוכיח היתכנות והשפעה חיובית בתחומים הבאים:</p>
-            <ul class="list-none text-left space-y-3 inline-block">
-                <li class="flex items-start"><span class="text-teal-500 font-bold text-2xl ml-3">✓</span><span><strong class="font-semibold text-gray-800">הוכחת השפעה:</strong> הצגת שיפור מובהק במדדי ההצלחה החדשים (מסוגלות, מוטיבציה וכו') בקבוצת הניסוי.</span></li>
-                <li class="flex items-start"><span class="text-teal-500 font-bold text-2xl ml-3">✓</span><span><strong class="font-semibold text-gray-800">בשלות פדגוגית:</strong> הוכחה כי צוותי ההוראה מסוגלים לאמץ את תפקיד המנטור ולהוביל תהליכי למידה אישיים באופן אפקטיבי.</span></li>
-                <li class="flex items-start"><span class="text-teal-500 font-bold text-2xl ml-3">✓</span><span><strong class="font-semibold text-gray-800">בטיחות ואתיקה:</strong> הבטחת סביבה טכנולוגית בטוחה לתלמידים, העומדת בכללי הגנת הפרטיות ומונעת חשיפה לתכנים פוגעניים.</span></li>
-                <li class="flex items-start"><span class="text-teal-500 font-bold text-2xl ml-3">✓</span><span><strong class="font-semibold text-gray-800">היתכנות להרחבה:</strong> פיתוח מודל עבודה שניתן לשכפל ולהרחיב לבתי ספר נוספים במערכת באופן יעיל ובר-קיימא.</span></li>
-            </ul>
-        </section>
-
-        <footer class="text-center mt-8 py-8 border-t-2 border-[#0a9396]">
+        <footer class="text-center mt-16 py-8 border-t-2 border-[#0a9396]">
             <p class="text-lg text-gray-700">התמודדות מוצלחת עם אתגרים אלו תאפשר לפרויקט 720 לא רק להצליח, אלא להוביל מהפכה של ממש במערכת החינוך בישראל.</p>
         </footer>
 
