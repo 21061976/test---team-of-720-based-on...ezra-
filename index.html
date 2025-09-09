@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ניתוח סיכונים חזותי: פרויקט 720</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Color Palette: Brilliant Blues -->
+    <!-- Plan Narrative & Structure: The infographic tells a story starting with an introduction to Project 720, followed by a deep dive into the four main risk pillars (Pedagogical, Privacy, Regulatory, Measurement). Each pillar is visualized to highlight its core challenges. The structure is designed for a top-to-bottom scrollable narrative. -->
+    <!-- Selected Visualizations: 
+         1. Pedagogical Risk -> Goal: Organize/Process -> Chosen Viz: HTML/CSS Flow Diagram. Justification: Clearly shows the transition of the teacher's role without using prohibited SVG/Mermaid.
+         2. Privacy & Ethics Risk -> Goal: Compare/Composition -> Chosen Viz: Donut Chart (Chart.js). Justification: Effectively visualizes the distinct components of the ethical challenge.
+         3. Regulatory Risk -> Goal: Compare -> Chosen Viz: Horizontal Bar Chart (Chart.js). Justification: Highlights the gap between the current state and project needs for each regulatory hurdle.
+         4. Measurement & Evaluation Risk -> Goal: Compare -> Chosen Viz: Radar Chart (Chart.js). Justification: Excellent for comparing multiple new KPIs against a central point, showing a shift in focus.
+         CONFIRMATION: NO SVG and NO MERMAID JS were used. All visualizations are either Chart.js on Canvas or structured HTML/CSS. -->
+    <style>
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow::after {
+            content: '➔';
+            font-size: 2.5rem;
+            color: #0a9396;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-gray-800">
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#005f73]">ניווט אל עתיד החינוך</h1>
+            <p class="text-xl mt-4 text-gray-600">ניתוח סיכונים חזותי של פרויקט "למידה מותאמת אישית 720"</p>
+        </header>
+
+        <section class="text-center max-w-4xl mx-auto mb-16">
+             <p class="text-lg leading-relaxed text-gray-700">פרויקט 720 הוא יוזמה מהפכנית השואפת לעצב מחדש את חוויית הלמידה ולהתאימה אישית לכל תלמיד. כמו בכל שינוי פרדיגמטי, הדרך רצופה באתגרים. אינפוגרפיקה זו מציגה את ארבעת תחומי הסיכון המרכזיים בפרויקט, וממחישה את האתגרים הניצבים בפנינו בדרך להגשמת החזון.</p>
+        </section>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">1. סיכון פדגוגי וארגוני</h2>
+                <p class="text-gray-600 mb-6 flex-grow">הסיכון המרכזי נוגע לליבת העשייה החינוכית: שינוי תפיסתי עמוק בקרב צוותי ההוראה והתמודדות עם עומס ההטמעה.</p>
+                <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: שינוי תפקיד המורה</h3>
+                <div class="flex flex-col items-center justify-around flex-grow space-y-4">
+                    <div class="bg-amber-100 border-2 border-amber-300 text-amber-800 rounded-lg p-4 w-full text-center shadow-md">
+                        <h4 class="font-bold">תפקיד מסורתי</h4>
+                        <p>מקנה ידע</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                    <div class="bg-teal-100 border-2 border-teal-300 text-teal-800 rounded-lg p-4 w-full text-center shadow-md">
+                        <h4 class="font-bold">תפקיד חדש</h4>
+                        <p>מנטור, מאבחן ומנחה</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-6 text-center">המעבר דורש הכשרה מקיפה ופיתוח כלים שיאפשרו למורה לעקוב אחר התקדמותו הרגשית והלימודית של כל תלמיד באופן אישי.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">2. סיכון פרטיות ואתיקה</h2>
+                <p class="text-gray-600 mb-6 flex-grow">השימוש בבינה מלאכותית וניהול מידע רגיש על תלמידים דורש התייחסות משפטית וטכנולוגית מעמיקה כדי לשמור על אמון הציבור.</p>
+                 <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: מורכבות האחריות הדיגיטלית</h3>
+                <div class="chart-container">
+                    <canvas id="privacyChart"></canvas>
+                </div>
+                 <p class="text-gray-600 mt-6 text-center">יש להבטיח עמידה מלאה בחוק הגנת הפרטיות, להטמיע "חגורות בטיחות" טכנולוגיות שיגנו על קטינים, ולוודא שמידע אישי לא ישמש לאימון מודלי AI חיצוניים.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">3. סיכון רגולטורי</h2>
+                <p class="text-gray-600 mb-6 flex-grow">הצלחת הפרויקט תלויה ביכולת לאפשר גמישות רגולטורית מבוקרת, שתתמוך במודלים ותכנים חדשניים.</p>
+                <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: גישור על הפער הרגולטורי</h3>
+                <div class="chart-container">
+                    <canvas id="regulatoryChart"></canvas>
+                </div>
+                <p class="text-gray-600 mt-6 text-center">נדרש פתרון לאישור תכנים דינמיים המיוצרים על ידי AI, יצירת "ארגז חול רגולטורי" לניסויים, והתמודדות עם מגבלות על תשתיות טכנולוגיות.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col transform hover:scale-105 transition-transform duration-300">
+                <h2 class="text-2xl font-bold text-[#005f73] mb-4 text-center">4. סיכון מדידה והערכה</h2>
+                <p class="text-gray-600 mb-6 flex-grow">כדי להצדיק את המשאבים ולהבטיח תמיכה ארוכת טווח, הפרויקט חייב להוכיח את ערכו במדדים ברורים שמשקפים הצלחה הוליסטית.</p>
+                <h3 class="text-xl font-semibold text-center text-[#ca6702] mb-4">האתגר: הגדרה חדשה של הצלחה</h3>
+                <div class="chart-container">
+                    <canvas id="evaluationChart"></canvas>
+                </div>
+                <p class="text-gray-600 mt-6 text-center">המעבר ממדידת ציונים בלבד למדידת מדדים רוחביים כמו מסוגלות, מוטיבציה ותחושת רלוונטיות דורש פיתוח כלי הערכה חדשים ודשבורדים שקופים.</p>
+            </div>
+            
+        </div>
+        
+        <footer class="text-center mt-16 py-8 border-t-2 border-[#0a9396]">
+            <p class="text-lg text-gray-700">התמודדות מוצלחת עם אתגרים אלו תאפשר לפרויקט 720 לא רק להצליח, אלא להוביל מהפכה של ממש במערכת החינוך בישראל.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const processLabels = (labels) => {
+            return labels.map(label => {
+                if (label.length > 16) {
+                    const words = label.split(' ');
+                    const lines = [];
+                    let currentLine = '';
+                    for (const word of words) {
+                        if ((currentLine + ' ' + word).length > 16 && currentLine.length > 0) {
+                            lines.push(currentLine);
+                            currentLine = word;
+                        } else {
+                            currentLine = currentLine ? currentLine + ' ' + word : word;
+                        }
+                    }
+                    lines.push(currentLine);
+                    return lines;
+                }
+                return label;
+            });
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: {
+                            family: 'Assistant, sans-serif',
+                            size: 14,
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    bodyFont: {
+                        family: 'Assistant, sans-serif'
+                    },
+                    titleFont: {
+                        family: 'Assistant, sans-serif'
+                    }
+                }
+            }
+        };
+
+        const privacyCtx = document.getElementById('privacyChart').getContext('2d');
+        const privacyChart = new Chart(privacyCtx, {
+            type: 'doughnut',
+            data: {
+                labels: processLabels(['עמידה בחוק הגנת הפרטיות', 'בטיחות AI לקטינים', 'רגולציה על שימוש AI', 'אימון מודלים חיצוניים']),
+                datasets: [{
+                    label: 'היבטי סיכון',
+                    data: [30, 25, 25, 20],
+                    backgroundColor: ['#0a9396', '#94d2bd', '#ee9b00', '#ca6702'],
+                    borderColor: '#ffffff',
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                cutout: '50%',
+            }
+        });
+
+        const regulatoryCtx = document.getElementById('regulatoryChart').getContext('2d');
+        const regulatoryChart = new Chart(regulatoryCtx, {
+            type: 'bar',
+            data: {
+                labels: processLabels(['אישור תכנים דינמיים', 'ארגז חול רגולטורי', 'אישור תשתיות טכנולוגיות']),
+                datasets: [
+                    {
+                        label: 'יכולת רגולטורית קיימת',
+                        data: [20, 10, 40],
+                        backgroundColor: '#94d2bd',
+                        borderColor: '#0a9396',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'צורך הפרויקט',
+                        data: [90, 80, 75],
+                        backgroundColor: '#ee9b00',
+                        borderColor: '#ca6702',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                ...defaultChartOptions,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        ticks: {
+                            callback: function(value) { return value + '%' }
+                        },
+                        title: {
+                            display: true,
+                            text: 'רמת המוכנות'
+                        }
+                    },
+                    y: {
+                       ticks: {
+                           font: { size: 12 }
+                       }
+                    }
+                }
+            }
+        });
+        
+        const evaluationCtx = document.getElementById('evaluationChart').getContext('2d');
+        const evaluationChart = new Chart(evaluationCtx, {
+            type: 'radar',
+            data: {
+                labels: ['מסוגלות', 'מוטיבציה', 'רלוונטיות', 'פעלנות', 'כישורים'],
+                datasets: [{
+                    label: 'מדדי הצלחה חדשים',
+                    data: [85, 90, 80, 95, 75],
+                    backgroundColor: 'rgba(10, 147, 150, 0.2)',
+                    borderColor: '#0a9396',
+                    pointBackgroundColor: '#0a9396',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#0a9396'
+                }]
+            },
+            options: {
+                ...defaultChartOptions,
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                         pointLabels: {
+                            font: {
+                                size: 14,
+                                family: 'Assistant, sans-serif'
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: defaultChartOptions.plugins.tooltip
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
