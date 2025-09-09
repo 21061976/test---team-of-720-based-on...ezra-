@@ -6,6 +6,7 @@
     <title>ניתוח סיכונים חזותי: פרויקט 720</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
@@ -116,6 +117,8 @@
     </main>
 
     <script>
+        Chart.register(ChartDataLabels);
+
         const processLabels = (labels) => {
             return labels.map(label => {
                 if (label.length > 16) {
@@ -188,27 +191,39 @@
                 }]
             },
             options: {
-                ...defaultChartOptions,
+                responsive: true,
+                maintainAspectRatio: false,
                 cutout: '50%',
                 plugins: {
-                    ...defaultChartOptions.plugins,
+                    legend: {
+                        display: false
+                    },
                     tooltip: {
-                        ...defaultChartOptions.plugins.tooltip,
                         callbacks: {
-                            ...defaultChartOptions.plugins.tooltip.callbacks,
+                            title: tooltipTitleCallback,
                             label: function(context) {
                                 let label = context.label || '';
-                                if (Array.isArray(label)) {
-                                    label = label.join(' ');
-                                }
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed !== null) {
-                                    label += context.parsed + '%';
-                                }
+                                if (Array.isArray(label)) { label = label.join(' '); }
+                                if (label) { label += ': '; }
+                                if (context.parsed !== null) { label += context.parsed + '%'; }
                                 return label;
                             }
+                        }
+                    },
+                    datalabels: {
+                        formatter: (value, context) => {
+                            let label = context.chart.data.labels[context.dataIndex];
+                            if (Array.isArray(label)) {
+                                label = label.join('\\n');
+                            }
+                            return `${label}\\n${value}%`;
+                        },
+                        color: '#fff',
+                        textAlign: 'center',
+                        font: {
+                            weight: 'bold',
+                            size: 11,
+                            family: 'Assistant, sans-serif'
                         }
                     }
                 }
